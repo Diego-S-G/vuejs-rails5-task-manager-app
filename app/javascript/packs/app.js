@@ -87,14 +87,11 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
             updateTask: function(event, id) {
                 event.stopImmediatePropagation();
     
-                let task = this.tasks.find(item => item.id == id)
-    
-                if (task) {
-                    task.name = this.task.name;
-                    task.description = this.task.description;
-                    task.completed = this.task.completed;
-                    this.message = `Task ${task.name} was updated`;
-                }
+                Api.updateTask(this.task).then(function(response){
+                    app.listTasks();
+                    app.clear();
+                    app.message = `Task ${response.id} was updated`;
+                });
             },
             deleteTask: function(event, id) {
                 event.stopImmediatePropagation(); // clicking it does not trigger any other event handlers at the same time
