@@ -70,16 +70,11 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
                     this.task.completed = true;
                 }
     
-                let taskId = this.nextId;
-                this.task.id = taskId;
-    
-                let newTask = Object.assign({}, this.task);
-                this.tasks.push(newTask);
-    
-                this.clear();
-                
-                this.message = `Task with Id ${taskId} was created`;
-    
+                Api.createTask(this.task).then(function(response){
+                    app.listTasks();
+                    app.clear();
+                    app.message = `Task with Id ${response.id} was created`;
+                });
             },
             editTask: function(event, id) {
                 this.action = 'edit';
@@ -112,8 +107,6 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
                 }
             }
         },
-        beforeMount() {
-            this.listTasks();
-        }
+        beforeMount() { this.listTasks() }
     });
 });
