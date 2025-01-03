@@ -1,5 +1,7 @@
 import Vue from "vue";
 
+const Api = require('./api');
+
 document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pra rodar dps das dependencias dos packs, vue, etc
     var app = new Vue({
         el: '#app',
@@ -23,13 +25,7 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
             } // app.toggleDone(...) pq sem não funciona, por causa do escopo. Agr mudou para $parent.toggleDone(...) pq é uma aplicação maior que a antiga
         },
         data: {
-            tasks: [
-                { id: 1, name: 'Todo 1', description: 'Go to the store', completed: true },
-                { id: 2, name: 'Todo 2', description: 'Finish the tutorial', completed: true },
-                { id: 3, name: 'Todo 3', description: 'Clean the house', completed: true },
-                { id: 4, name: 'Todo 4', description: 'Go to the gym', completed: false },
-                { id: 5, name: 'Todo 5', description: 'Get some sleep', completed: false }
-            ],
+            tasks: [],
             task: {},
             message: '',
             action: 'create'
@@ -46,6 +42,11 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
             }
         },
         methods: {
+            listTasks: function() {
+                Api.listTasks().then(function(response) {
+                    return app.tasks = response;
+                })
+            },
             clear: function() {
                 this.task = {};
                 this.action = 'create';
@@ -110,6 +111,9 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
                     this.message = `Task with id ${id} was deleted`;
                 }
             }
+        },
+        beforeMount() {
+            this.listTasks();
         }
     });
 });
