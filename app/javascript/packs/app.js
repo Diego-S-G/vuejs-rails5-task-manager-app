@@ -99,8 +99,10 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
                 let taskIndex = this.tasks.findIndex(item => item.id == id);
     
                 if (taskIndex > -1) {
-                    this.$delete(this.tasks, taskIndex); // vue method to delete an item from a collection
-                    this.message = `Task with id ${id} was deleted`;
+                    Api.deleteTask(id).then(function(response){
+                        app.$delete(app.tasks, taskIndex); // vue method to delete an item from a collection
+                        app.message = `Task with id ${id} was deleted`;
+                    });
                 }
             }
         },
