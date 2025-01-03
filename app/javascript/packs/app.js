@@ -59,7 +59,14 @@ document.addEventListener("DOMContentLoaded", () => { // acredito que isso é pr
                 
                 if (task) {
                     task.completed = !task.completed;
-                    this.message = `Task ${task.name} is now ${task.completed ? 'done' : 'todo'}`;
+                    this.task = task; // recebendo a versão modificada do task
+
+                    Api.updateTask(this.task).then(function(response){
+                        app.listTasks();
+                        app.clear();
+                        let status = response.completed ? 'completed' : 'in progress';
+                        app.message = `Task ${response.id} is ${status}`;
+                    });
                 }
             },
             createTask: function(event) {
