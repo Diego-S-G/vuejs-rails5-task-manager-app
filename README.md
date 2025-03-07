@@ -1,24 +1,14 @@
-# README
+# Task Manager App com Rails e Vue.js
+<br/>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um dos projetos que fiz acompanhando o [curso do Mashrur Hossain na Udemy](https://www.udemy.com/course/ruby-on-rails-react-angular), na minha trilha de aprendizado de Ruby e Rails usando React, AngularJS e Vuejs.
+<br/>
 
-Things you may want to cover:
+Ele consiste em uma ToDo List onde podemos adicionar, alterar e remover afazeres de forma simples e prática.
+<br/>
 
-* Ruby version
+O projeto usa ruby 2.5.8 e rails 5.2.8 e a versão simples apenas com o Vue pode ser encontrada [aqui](https://github.com/Diego-S-G/vuejs-task-manager).
+<br/>
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Funcionamento:
+https://github.com/user-attachments/assets/e3ab4b21-fa4e-4da0-966b-ad632b189635
